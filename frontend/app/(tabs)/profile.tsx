@@ -4,50 +4,13 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { PharmacyColors, CommonStyles } from '../../constants/Colors';
-import { account } from '../../config/appwriteConfig';
 
 export default function ProfileScreen() {
   const router = useRouter();
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetchUser();
-  }, []);
 
-  const fetchUser = async () => {
-    try {
-      const userData = await account.get();
-      setUser(userData);
-    } catch (error) {
-      console.log('Error fetching user:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleLogout = async () => {
-    Alert.alert(
-      'Logout',
-      'Are you sure you want to logout?',
-      [
-        { text: 'Cancel', style: 'cancel' },
-        {
-          text: 'Logout',
-          style: 'destructive',
-          onPress: async () => {
-            try {
-              await account.deleteSession('current');
-              router.replace('/login');
-            } catch (error) {
-              console.log('Logout error:', error);
-              Alert.alert('Error', 'Failed to logout');
-            }
-          },
-        },
-      ]
-    );
-  };
 
   const menuItems = [
     {
@@ -167,7 +130,7 @@ export default function ProfileScreen() {
         {/* Logout Button */}
         <TouchableOpacity
           style={styles.logoutButton}
-          onPress={handleLogout}
+          // onPress={handleLogout}
           activeOpacity={0.8}
         >
           <Ionicons name="log-out-outline" size={24} color={PharmacyColors.error} />

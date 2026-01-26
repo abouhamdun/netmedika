@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from datetime import timedelta
 import os
 import jwt
-from schemas.auth_schema import RegisterRequest, LoginRequest, TokenResponse, AuthResponse, RefreshTokenRequest, UserResponse
+from schemas.auth_schema import *
 
 from models.auth_model import User, UserRole
 from database import get_db

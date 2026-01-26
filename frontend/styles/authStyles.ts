@@ -133,4 +133,16 @@ export const styles = StyleSheet.create({
   resendContainer: { flexDirection: 'row', alignItems: 'center' },
   resendText: { fontSize: 14, color: PharmacyColors.textSecondary },
   resendLink: { fontSize: 14, fontWeight: 'bold', color: PharmacyColors.accent },
+  termsText: {
+  fontSize: 13,
+  color: '#888',
+  textAlign: 'center',
+  marginTop: 16,
+  marginBottom: 8,
+},
+termsLink: {
+  color: PharmacyColors.primary,
+  textDecorationLine: 'underline',
+  fontWeight: 'bold',
+},
 });

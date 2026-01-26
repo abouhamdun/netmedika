@@ -7,7 +7,6 @@ import { useForm, Controller } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Ionicons } from '@expo/vector-icons';
-import { account } from "../config/appwriteConfig";
 import { PharmacyColors, PaperTheme } from '../constants/Colors';
 
 const schema = Yup.object().shape({
@@ -32,39 +31,6 @@ export default function ForgotPasswordScreen() {
     },
   });
 
-  const onSubmit = async (data: FormData) => {
-    try {
-      setLoading(true);
-      
-      // Appwrite password recovery
-      await account.createRecovery(
-        data.email.trim(),
-        'https://yourapp.com/reset-password' // Your reset password URL
-      );
-
-      console.log("✅ Password reset email sent");
-      setEmailSent(true);
-
-    } catch (err: any) {
-      console.error("Password reset failed:", err);
-      
-      let errorMessage = "Failed to send reset email";
-      if (err.message) {
-        errorMessage = err.message;
-      }
-      
-      alert(errorMessage);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleResend = () => {
-    const email = getValues('email');
-    if (email) {
-      onSubmit({ email });
-    }
-  };
 
   if (emailSent) {
     return (
@@ -138,7 +104,7 @@ export default function ForgotPasswordScreen() {
 
             <View style={styles.resendContainer}>
               <Text style={styles.resendText}>Didn't receive the email? </Text>
-              <TouchableOpacity onPress={handleResend}>
+              <TouchableOpacity>
                 <Text style={styles.resendLink}>Resend</Text>
               </TouchableOpacity>
             </View>
@@ -228,7 +194,7 @@ export default function ForgotPasswordScreen() {
               {/* Send Reset Link Button */}
               <TouchableOpacity
                 activeOpacity={0.8}
-                onPress={handleSubmit(onSubmit)}
+                // onPress={handleSubmit(onSubmit)}
                 disabled={loading}
               >
                 <LinearGradient

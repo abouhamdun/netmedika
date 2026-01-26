@@ -3,25 +3,12 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, StatusBar } from 
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { PharmacyColors, CommonStyles } from '../../constants/Colors';
-import { account } from '../../config/appwriteConfig';
 import Toast from 'react-native-toast-message';
 import { router } from 'expo-router';
 
 export default function HomeScreen() {
   const [userName, setUserName] = useState('User');
 
-  useEffect(() => {
-    fetchUser();
-  }, []);
-
-  const fetchUser = async () => {
-    try {
-      const user = await account.get();
-      setUserName(user.name || 'User');
-    } catch (error) {
-      console.log('Error fetching user:', error);
-    }
-  };
 
   const handleOrderDrugs = () => {
     router.push('/(tabs)/medicines');

@@ -1,4 +1,4 @@
-// components/CustomAlert.tsx
+// ...existing code...
 import React from 'react';
 import { View, Text, StyleSheet, Modal, TouchableOpacity, Animated } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';

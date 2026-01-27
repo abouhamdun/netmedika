@@ -7,40 +7,15 @@ import {
   Dimensions, 
   StatusBar 
 } from 'react-native';
-import * as SplashScreen from 'expo-splash-screen';
-import SplashScreenComponent from '../components/SplashScreen';
 
-// Keep the splash screen visible while we fetch resources
-SplashScreen.preventAutoHideAsync();
 import { LinearGradient } from 'expo-linear-gradient';
-import { Link, useRouter } from 'expo-router';
-import Svg, { Circle, Path, G, Rect } from 'react-native-svg';
+import { useRouter } from 'expo-router';
+import Svg, { Circle, G, Rect } from 'react-native-svg';
 
 const { width, height } = Dimensions.get('window');
 
 const WelcomeScreen = () => {
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    async function prepare() {
-      try {
-        // Simulating some loading time (you can replace this with actual data loading)
-        await new Promise(resolve => setTimeout(resolve, 2000));
-      } catch (e) {
-        console.warn(e);
-      } finally {
-        setIsLoading(false);
-        await SplashScreen.hideAsync();
-      }
-    }
-
-    prepare();
-  }, []);
-
-  if (isLoading) {
-    return <SplashScreenComponent />;
-  }
 
   return (
     <>

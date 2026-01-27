@@ -15,7 +15,7 @@ REFRESH_TOKEN_EXPIRE_DAYS = os.getenv("REFRESH_TOKEN_EXPIRE_DAYS")
 
 def hash_password(password: str) -> str:
     """Hash a password using bcrypt"""
-    salt = bcrypt.gensalt(rounds=int(os.getenv("BCRYPT_ROUNDS", 12)))
+    salt = bcrypt.gensalt(rounds=int(os.getenv("BCRYPT_ROUNDS", 4)))
     return bcrypt.hashpw(password.encode('utf-8'), salt).decode('utf-8')
 
 
